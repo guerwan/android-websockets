@@ -42,10 +42,18 @@ public class SocketIOClient {
     String mSession;
     int mHeartbeat;
     WebSocketClient mClient;
+    String mNamespace;
 
     public SocketIOClient(URI uri, Handler handler) {
         // remove trailing "/" from URI, in case user provided e.g. http://test.com/
         mURL = uri.toString().replaceAll("/$", "") + "/socket.io/1/";
+        mHandler = handler;
+    }
+    
+    public SocketIOClient(URI uri, String namespace, Handler handler) {
+        // remove trailing "/" from URI, in case user provided e.g. http://test.com/
+        mURL = uri.toString().replaceAll("/$", "") + "/socket.io/1/";
+        mNamespace= namespace;
         mHandler = handler;
     }
 
